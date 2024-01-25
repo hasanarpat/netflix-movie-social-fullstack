@@ -1,0 +1,53 @@
+.series {
+  padding-top: 90px;
+  color: white;
+
+  .container {
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.52),
+        rgba(0, 0, 0, 0.73)
+      ),
+      url('https://e1.pxfuel.com/desktop-wallpaper/749/497/desktop-wallpaper-lights-background-color-rainbow-red-logo-texture-blue-lines-%D1%84%D0%BE%D0%BD-background-netflix-netflix-effect-colors-effect-lights-section-%D1%82%D0%B5%D0%BA%D1%81%D1%82%D1%83%D1%80%D1%8B-netflix-2021.jpg');
+    background-size: cover;
+    .top {
+      padding: 20px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: 20px;
+
+      .title {
+        font-size: 48px;
+        font-weight: 700;
+      }
+
+      .desc {
+        color: rgb(218, 208, 208);
+        font-size: 20px;
+        font-weight: 500;
+        text-align: justify;
+        width: 95%;
+        line-break: strict;
+      }
+
+      .seriesCategory {
+        font-size: 30px;
+        font-weight: 500;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        select {
+          cursor: pointer;
+          background: var(--main-color);
+          border: 1px solid white;
+          border-radius: 5px;
+          color: white;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}

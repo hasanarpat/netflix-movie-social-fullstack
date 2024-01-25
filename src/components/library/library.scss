@@ -1,0 +1,109 @@
+.library {
+  padding: 20px 50px;
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    column-gap: 10px;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      flex: 14%;
+      height: 420px;
+      position: relative;
+      cursor: pointer;
+
+      .imgContainer {
+        width: 100%;
+        height: 400px;
+        position: relative;
+
+        .img {
+          object-fit: cover;
+        }
+      }
+
+      .singleTitle {
+        position: absolute;
+        top: 340px;
+        font-size: 20px;
+        font-weight: 500;
+        width: 300px;
+        text-align: center;
+        padding: 0px 10px;
+        z-index: 2;
+        transition: all 0.5s ease;
+      }
+
+      .desc {
+        position: absolute;
+        top: 90px;
+        z-index: 2;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0px 10px;
+
+        .title {
+          text-align: center;
+          margin-bottom: 30px;
+        }
+
+        .seasons {
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        .info {
+          text-align: center;
+          span {
+            margin-right: 10px;
+
+            &::after {
+              content: '-';
+              font-size: 18px;
+              font-weight: 500;
+              margin-left: 10px;
+            }
+            &:last-child::after {
+              content: '';
+            }
+          }
+        }
+
+        .plot {
+          text-align: justify;
+          color: gray;
+        }
+      }
+
+      .filter {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        background: #0000009c;
+      }
+
+      &:hover {
+        .singleTitle {
+          display: none;
+        }
+        .desc {
+          display: flex;
+          transition: all 0.6s ease;
+        }
+
+        .filter {
+          display: block;
+        }
+      }
+    }
+  }
+}
