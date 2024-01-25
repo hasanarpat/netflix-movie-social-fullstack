@@ -11,9 +11,9 @@ export const GET = async (
   try {
     await connectToDb();
 
-    const movies = await Comment.findById(id);
+    const comment = await Comment.findById(id);
 
-    return NextResponse.json(movies, { status: 200 });
+    return NextResponse.json(comment, { status: 200 });
   } catch (error: any) {
     return NextResponse.json(
       { title: error._message, message: error.message },
@@ -31,8 +31,8 @@ export const PUT = async (
   try {
     await connectToDb();
 
-    const movieData = await req.json();
-    const response = await Comment.findOneAndReplace({ _id: id }, movieData);
+    const commentData = await req.json();
+    const response = await Comment.findOneAndReplace({ _id: id }, commentData);
 
     return NextResponse.json(response, { status: 200 });
   } catch (error: any) {

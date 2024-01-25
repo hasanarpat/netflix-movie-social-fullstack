@@ -21,8 +21,8 @@ export const POST = async (req: NextRequest) => {
   try {
     await connectToDb();
 
-    const movie = new Movie(await req.json());
-    const response = await movie.save();
+    const series = new Series(await req.json());
+    const response = await series.save();
 
     return NextResponse.json(response, { status: 200 });
   } catch (error: any) {

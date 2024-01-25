@@ -6,9 +6,9 @@ export const GET = async (req: NextRequest) => {
   try {
     await connectToDb();
 
-    const movies = await Episodes.find();
+    const episode = await Episodes.find();
 
-    return NextResponse.json(movies, { status: 200 });
+    return NextResponse.json(episode, { status: 200 });
   } catch (error: any) {
     return NextResponse.json(
       { title: error._message, message: error.message },
@@ -21,8 +21,8 @@ export const POST = async (req: NextRequest) => {
   try {
     await connectToDb();
 
-    const movie = new Episodes(await req.json());
-    const response = await movie.save();
+    const episode = new Episodes(await req.json());
+    const response = await episode.save();
 
     return NextResponse.json(response, { status: 200 });
   } catch (error: any) {

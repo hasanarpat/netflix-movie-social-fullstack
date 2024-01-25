@@ -9,9 +9,11 @@ export const helper = async (
   reqType: string,
   model: string,
   isSingleData: boolean,
-  id: string,
-  data: any
+  id?: any,
+  data?: any
 ) => {
+  // console.log(reqType, model, isSingleData, id, data);
+
   if (isSingleData) {
     switch (reqType) {
       case 'GET':

@@ -5,7 +5,11 @@
   margin-right: 5px;
   overflow: hidden;
   background: var(--main-color);
-  cursor: grabbing;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 
   .imgContainer {
     width: 325px;
@@ -28,7 +32,6 @@
   &:hover {
     width: 360px;
     height: 320px;
-    margin-top: -100px;
     -webkit-box-shadow: 1px 3px 28px 0px rgba(255, 255, 255, 0.23);
     -moz-box-shadow: 1px 3px 28px 0px rgba(255, 255, 255, 0.23);
     box-shadow: 1px 3px 28px 0px rgba(255, 255, 255, 0.23);

@@ -12,7 +12,7 @@ const PlayMovie = () => {
         Back to Home
       </Link>
       <video
-        autoPlay={false}
+        autoPlay={true}
         src="/VforV.mp4"
         loop
         className="video"
