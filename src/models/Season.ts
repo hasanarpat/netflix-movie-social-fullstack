@@ -4,9 +4,15 @@ const { Schema, model, models } = mongoose;
 
 const seasonSchema = new Schema(
   {
-    address: String,
-   episodes:[String],
-   id:Number
+    episodes: [String],
+    title: String,
+    id: Number,
+    year: String,
+    released: String,
+    writer: String,
+    plot: String,
+    poster: String,
+    ratings: [String],
   },
   { timestamps: true }
 );

@@ -25,7 +25,7 @@ const seriesSchema = new Schema(
     imdbId: String,
     totalSeasons: Number,
     seasons: [String],
-    comments: [{ id: String }],
+    comments: [String],
   },
   { timestamps: true }
 );

@@ -92,6 +92,12 @@ const Navbar = () => {
               </Link>
               <Link
                 className="option"
+                href="/watchList"
+              >
+                WatchList
+              </Link>
+              <Link
+                className="option"
                 href="/logout"
               >
                 Logout
