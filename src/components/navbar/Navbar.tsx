@@ -53,9 +53,9 @@ const Navbar = () => {
           </Link>
           <Link
             className="link"
-            href="/movie"
+            href="/movies"
           >
-            Movie
+            Movies
           </Link>
           <Link
             className="link"

@@ -1,14 +1,14 @@
 import Library from '@/components/library/Library';
 import './page.scss';
 
-const Series = () => {
+const Movies = () => {
   return (
-    <div className="series">
+    <div className="movies">
       <div className="container">
         <div className="top">
-          <h1 className="title">Series</h1>
+          <h1 className="title">Movies</h1>
           <p className="desc">
-            Find and explore endless numbers of exiting tv series and shows
+            Find and explore endless numbers of movies around world!
           </p>
           <p className="desc">
             Consequat ipsum est adipisicing duis ut ea sunt laborum sunt
@@ -20,7 +20,7 @@ const Series = () => {
             esse laborum. Cillum tempor sit tempor aliqua adipisicing voluptate
             consequat.
           </p>
-          <div className="seriesCategory">
+          <div className="moviesCategory">
             <select
               name="genre"
               id="genre"
@@ -42,10 +42,10 @@ const Series = () => {
             </select>
           </div>
         </div>
-        <Library route="series" />
+        <Library route="movies" />
       </div>
     </div>
   );
 };
 
-export default Series;
+export default Movies;
