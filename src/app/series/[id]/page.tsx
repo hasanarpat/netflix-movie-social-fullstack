@@ -1,9 +1,16 @@
+import MediaDetails from '@/components/mediaDetails/MediaDetails';
 import './page.scss';
 
 const SingleSeries = ({ params }: { params: { id: String } }) => {
   const { id } = params;
-  console.log(id);
-  return <div className="singleSeries"></div>;
+  return (
+    <div className="singleSeries">
+      <MediaDetails
+        route="series"
+        id={id}
+      />
+    </div>
+  );
 };
 
 export default SingleSeries;
