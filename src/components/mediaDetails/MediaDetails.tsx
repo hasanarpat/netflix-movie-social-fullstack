@@ -6,13 +6,26 @@ import { IoAddOutline, IoPlay } from 'react-icons/io5';
 
 const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
   const data = await getData(route, id);
+  // const sectionStyle = {
+  //   backgroundImage: `url("${data.poster.replace(/'/g, '')}")`,
+  //   backgroundSize: 'cover',
+  //   backgroundPosition: 'center',
+  //   backgroundRepeat: 'no-repeat',
+  //   background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${data.poster.replace(
+  //     /'/g,
+  //     ''
+  //   )}")`,
+  // };
   return (
-    <section
-      className="mediaDetails"
-      //   style={{
-      //     background: `url("${data.poster}"),linear-gradient(to top,rgba(255, 2, 2, 0.4) 0%,var(--main-color) 100%) no-repeat center center fixed`,
-      //   }}
-    >
+    <section className="mediaDetails">
+      <div className="imgBackground">
+        <Image
+          alt={data.title}
+          src={data.poster.replace(/'/g, '')}
+          fill
+          className="background"
+        />
+      </div>
       <div className="top">
         <div className="imgContainer">
           <Image
