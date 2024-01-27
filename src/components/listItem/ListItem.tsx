@@ -7,13 +7,13 @@ import { AiOutlineLike } from 'react-icons/ai';
 import { BiDislike } from 'react-icons/bi';
 import Link from 'next/link';
 
-const ListItem = () => {
+const ListItem = ({ movie }: { movie: any }) => {
   return (
     <div className="listItem">
       <div className="imgContainer">
         <Image
           alt=""
-          src={V}
+          src={movie.poster.replace(/'/g, '')}
           fill
           className="img"
         />
@@ -34,17 +34,13 @@ const ListItem = () => {
           <AiOutlineLike className="icon" />
           <BiDislike className="icon" />
         </div>
-        <div className="name">V for Vendetta</div>
-        <div className="desc">
-          Aute nisi fugiat sint pariatur officia aliquip reprehenderit officia
-          proident sint. Labore in cillum consequat do irure ullamco irure
-          aliqua sunt eiusmod excepteur et do amet.
-        </div>
-        <div className="genre">Action</div>
+        <div className="name">{movie.title}</div>
+        <div className="desc">{movie.plot.slice(0, 128)}</div>
+        <div className="genre">{movie.genre}</div>
         <div className="info">
-          <span>1h14mn</span>
-          <span className="limit">16+</span>
-          <span>1999</span>
+          <span>{movie.runtime}</span>
+          <span className="limit">{movie.rated}</span>
+          <span>{movie.released}</span>
         </div>
       </div>
     </div>

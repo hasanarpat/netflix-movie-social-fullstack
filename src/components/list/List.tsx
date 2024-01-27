@@ -1,8 +1,39 @@
 'use client';
 import './list.scss';
 import ListItem from '../listItem/ListItem';
-import { useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+
+interface Movie {
+  _id: string;
+  title: string;
+  year: string;
+  actors: string[];
+  awards: string;
+  comments: any[];
+  country: string;
+  createdAt: string;
+  director: string[];
+  genre: string;
+  imdbId: string;
+  imdbRating: string;
+  imdbVotes: string;
+  language: string;
+  metaScore: string;
+  plot: string;
+  poster: string;
+  rated: string;
+  ratings: Rating[];
+  released: string;
+  runtime: string;
+  updatedAt: string;
+  writer: string[];
+}
+
+interface Rating {
+  source: string;
+  value: string;
+}
 
 const List = () => {
   const listRef = useRef<HTMLDivElement | null>(null);
@@ -30,6 +61,24 @@ const List = () => {
       }, 1000);
     }
   };
+  const [data, setData] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:3000/api/movies');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+      setData(result);
+      console.log(result);
+    };
+
+    fetchData().catch((e) => {
+      // handle the error as needed
+      console.error('An error occurred while fetching the data: ', e);
+    });
+  }, []);
 
   return (
     <div className="list">
@@ -43,16 +92,14 @@ const List = () => {
           className="container"
           ref={listRef}
         >
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
-          <ListItem />
+          <Suspense fallback={<div style={{ color: 'white' }}>Loading...</div>}>
+            {data?.map((item: any) => (
+              <ListItem
+                movie={item}
+                key={item._id}
+              />
+            ))}
+          </Suspense>
         </div>
         <IoIosArrowForward
           className="arrow"
