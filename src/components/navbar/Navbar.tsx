@@ -1,11 +1,11 @@
 'use client';
-import Image from 'next/image';
 import './navbar.scss';
+import Image from 'next/image';
 import Link from 'next/link';
 import { BiSearch } from 'react-icons/bi';
 import { IoNotifications } from 'react-icons/io5';
 import { MdArrowDropDown } from 'react-icons/md';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
@@ -19,12 +19,13 @@ const Navbar = () => {
     pathName.includes(item)
   );
 
-  window.onscroll = () => {
-    setIsScrolled(window.scrollY <= 70 ? false : true);
-    return () => window.onscroll === null;
-  };
-
-  console.log(isScrolled);
+  useEffect(() => {
+    window.onscroll = () => {
+      setIsScrolled(window.scrollY <= 70 ? false : true);
+      console.log(isScrolled);
+      return () => window.onscroll === null;
+    };
+  }, [isScrolled]);
 
   return showNavbar.length > 0 ? (
     <></>
