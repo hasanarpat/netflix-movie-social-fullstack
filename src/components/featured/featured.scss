@@ -27,6 +27,7 @@
 
   .img {
     object-fit: cover;
+    filter: grayscale(0.2);
   }
 
   .info {
