@@ -18,13 +18,15 @@ const ListItem = ({ movie }: { movie: any }) => {
           className="img"
         />
       </div>
-      <video
-        autoPlay={true}
-        src="/VforV.mp4"
-        loop
-        className="trailer"
-        muted
-      />
+      <Link href={`/movies/${movie._id}`}>
+        <video
+          autoPlay={true}
+          src="/VforV.mp4"
+          loop
+          className="trailer"
+          muted
+        />
+      </Link>
       <div className="itemInfo">
         <div className="icons">
           <Link href="/movies/id/play">

@@ -16,6 +16,7 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
   //     ''
   //   )}")`,
   // };
+
   return (
     <section className="mediaDetails">
       <div className="imgBackground">

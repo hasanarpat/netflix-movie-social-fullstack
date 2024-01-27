@@ -30,7 +30,7 @@ export const PUT = async (
     await connectToDb();
 
     const userData = await req.json();
-    const response = await User.findOneAndReplace({ _id: id }, userData);
+    const response = await User.findOneAndUpdate({ _id: id }, userData);
 
     return NextResponse.json(response, { status: 200 });
   } catch (error: any) {

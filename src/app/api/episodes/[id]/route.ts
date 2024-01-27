@@ -32,7 +32,7 @@ export const PUT = async (
     await connectToDb();
 
     const episodeData = await req.json();
-    const response = await Episodes.findOneAndReplace({ _id: id }, episodeData);
+    const response = await Episodes.findOneAndUpdate({ _id: id }, episodeData);
 
     return NextResponse.json(response, { status: 200 });
   } catch (error: any) {

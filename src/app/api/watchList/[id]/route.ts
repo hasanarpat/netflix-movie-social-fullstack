@@ -52,7 +52,7 @@ export const GET = async (
 //     await connectToDb();
 
 //     const watchList = await req.json();
-//     const response = await WatchList.findOneAndReplace({ _id: id }, watchList);
+//     const response = await WatchList.findOneAndUpdate({ _id: id }, watchList);
 
 //     return NextResponse.json(response, { status: 200 });
 //   } catch (error: any) {

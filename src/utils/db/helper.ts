@@ -137,22 +137,22 @@ const postItem = async (model: string, data: any) => {
 const putItem = async (model: string, id: string, data: any) => {
   switch (model) {
     case 'comments':
-      return await Comment.findOneAndReplace({ _id: id }, data);
+      return await Comment.findOneAndUpdate({ _id: id }, data);
       break;
     case 'episodes':
-      return await Episodes.findOneAndReplace({ _id: id }, data);
+      return await Episodes.findOneAndUpdate({ _id: id }, data);
       break;
     case 'movies':
-      return await Movie.findOneAndReplace({ _id: id }, data);
+      return await Movie.findOneAndUpdate({ _id: id }, data);
       break;
     case 'series':
-      return await Series.findOneAndReplace({ _id: id }, data);
+      return await Series.findOneAndUpdate({ _id: id }, data);
       break;
     case 'user':
-      return await User.findOneAndReplace({ _id: id }, data);
+      return await User.findOneAndUpdate({ _id: id }, data);
       break;
     // case 'watchList':
-    //   return await WatchList.findOneAndReplace({ _id: id }, data);
+    //   return await WatchList.findOneAndUpdate({ _id: id }, data);
     //   break;
 
     default:

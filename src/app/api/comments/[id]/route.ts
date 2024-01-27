@@ -32,7 +32,7 @@ export const PUT = async (
     await connectToDb();
 
     const commentData = await req.json();
-    const response = await Comment.findOneAndReplace({ _id: id }, commentData);
+    const response = await Comment.findOneAndUpdate({ _id: id }, commentData);
 
     return NextResponse.json(response, { status: 200 });
   } catch (error: any) {

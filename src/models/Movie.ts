@@ -24,6 +24,7 @@ const movieSchema = new Schema(
     imdbVotes: String,
     imdbId: String,
     comments: [{ id: String }],
+    images: [String],
   },
   { timestamps: true }
 );
