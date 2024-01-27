@@ -7,6 +7,7 @@ import { BiDislike } from 'react-icons/bi';
 import { getAllData } from '@/utils/db/getData';
 
 const Library = async ({ route }: { route: String }) => {
+  console.log(route);
   const items = await getAllData(route);
   return (
     <div className="library">
@@ -34,7 +35,7 @@ const Library = async ({ route }: { route: String }) => {
                 <span>{item.genre}</span>
                 <span>{item.runtime} mn.</span>
               </p>
-              <p className="plot">{item.plot.slice(0, 96)}</p>
+              <p className="plot">{item.plot.slice(0, 128)}</p>
               <p className="imdbRating">IMDB: {item.imdbRating}</p>
               {route === 'series' && (
                 <p className="seasons">Seasons: {item.totalSeasons}</p>
