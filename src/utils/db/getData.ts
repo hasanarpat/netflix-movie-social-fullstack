@@ -1,9 +1,9 @@
 export const getAllData = async (route: String) => {
   const response = await fetch(`http://localhost:3000/api/${route}`, {
     cache: 'default',
-    next: {
-      revalidate: 10,
-    },
+    // next: {
+    //   revalidate: 10,
+    // },
   });
   // console.log(await response.json());
   if (!response.ok) return console.log('something went wrong');

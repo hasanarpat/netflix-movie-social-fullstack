@@ -53,7 +53,7 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
               <button className="watch">
                 <Link
                   className="watch"
-                  href={`/movies/${data._id}/play`}
+                  href={`/${route}/${data._id}/play`}
                 >
                   <IoPlay style={{ marginRight: 10 }} />
                   <span>Watch Now</span>

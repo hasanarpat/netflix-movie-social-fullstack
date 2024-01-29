@@ -1,8 +1,8 @@
 import './page.scss';
 import BackButton from '@/components/backButton/BackButton';
-const PlayMovie = () => {
+const PlaySeries = () => {
   return (
-    <div className="playMovie">
+    <div className="playSeries">
       <BackButton desc="Go Back" />
       <video
         autoPlay={true}
@@ -15,4 +15,4 @@ const PlayMovie = () => {
   );
 };
 
-export default PlayMovie;
+export default PlaySeries;
