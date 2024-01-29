@@ -10,7 +10,7 @@ export const GET = async (
   try {
     await connectToDb();
 
-    const watchList = await WatchList.findById(id);
+    const watchList = await WatchList.find({ userId: id });
 
     return NextResponse.json(watchList, { status: 200 });
   } catch (error: any) {

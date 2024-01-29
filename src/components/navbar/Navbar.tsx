@@ -68,7 +68,7 @@ const Navbar = () => {
           </Link>
           <Link
             className="link"
-            href="/my-list"
+            href="/user/watchList"
           >
             My List
           </Link>
@@ -89,13 +89,13 @@ const Navbar = () => {
             <div className="options">
               <Link
                 className="option"
-                href="/settings"
+                href="/user/settings"
               >
                 Settings
               </Link>
               <Link
                 className="option"
-                href="/watchList"
+                href="/user/watchList"
               >
                 WatchList
               </Link>
