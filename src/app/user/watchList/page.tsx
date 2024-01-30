@@ -4,9 +4,11 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import Link from 'next/link';
 import { BiPlayCircle } from 'react-icons/bi';
 
+const userId = '65aecf19f468c6f384162233';
+
 const getData = async () => {
   const response = await fetch(
-    'http://localhost:3000/api/watchList/65aecf19f468c6f384162233',
+    `http://localhost:3000/api/watchList/${userId}`,
     {
       //   next: {
       //     revalidate: 10,
@@ -37,7 +39,21 @@ const getFavorites = async (favorites: [string]) => {
 const WatchList = async () => {
   const data = await getData();
   const favorites = await getFavorites(data[0].favorites);
-  console.log(favorites);
+  // console.log(favorites);
+
+  const handleDelete = async (formData: FormData) => {
+    'use server';
+    const id = formData.get('id');
+    // console.log(id);
+    const response = await fetch(
+      `http://localhost:3000/api/watchList/${userId}`,
+      {
+        cache: 'no-cache',
+        body: JSON.stringify({ id }),
+        method: 'DELETE',
+      }
+    );
+  };
 
   return (
     <div className="watchList">
@@ -68,9 +84,13 @@ const WatchList = async () => {
                 </Link>
                 <form
                   className="delete"
-                  action={''}
+                  action={handleDelete}
                 >
-                  <button type="submit">
+                  <button
+                    type="submit"
+                    name="id"
+                    value={item._id}
+                  >
                     <AiOutlineDelete />
                   </button>
                 </form>

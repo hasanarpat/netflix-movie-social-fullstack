@@ -63,20 +63,37 @@ export const GET = async (
 //   }
 // };
 
-// export const DELETE = async (
-//   req: NextRequest,
-//   { params }: { params: { id: string } }
-// ) => {
-//   const { id } = params;
-//   try {
-//     await connectToDb();
-//     const response = await WatchList.findByIdAndDelete(id);
+export const DELETE = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  const { id } = params;
+  try {
+    await connectToDb();
+    // console.log(id, 'from route api delete');
+    const deleteItem = await req.json();
+    const response = await WatchList.findOne({ userId: id });
+    const { favorites } = response;
 
-//     return NextResponse.json(response, { status: 200 });
-//   } catch (error: any) {
-//     return NextResponse.json(
-//       { title: error._message, message: error.message },
-//       { status: 400 }
-//     );
-//   }
-// };
+    // console.log(favorites, 'old');
+
+    const newFavorites = favorites.filter(
+      (item: string, i: number) => i !== favorites.indexOf(deleteItem.id)
+    );
+
+    // console.log(newFavorites, 'new');
+
+    // const data = await response.json();
+    // console.log(data, 'api delete');
+
+    response.favorites = newFavorites;
+    const data = await response.save();
+
+    return NextResponse.json(data, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { title: error._message, message: error.message },
+      { status: 400 }
+    );
+  }
+};
