@@ -6,6 +6,16 @@
   place-items: center;
   .wrapper {
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .desc {
+      font-size: 32px;
+      font-weight: 500;
+      text-align: center;
+    }
+
     .list {
       width: 100%;
       margin: auto;
@@ -46,28 +56,35 @@
           display: flex;
           align-items: center;
           gap: 20px;
+          width: 116px;
           .play {
+            flex: 1;
             font-size: 32px;
             font-weight: 500;
             color: #8a2be2;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.5s ease-in-out;
 
             &:hover {
+              font-size: 48px;
               text-align: center;
-              background: skyblue;
+              background: gray;
               border-radius: 10px;
               text-align: center;
-              -webkit-box-shadow: 1px 3px 28px 0px skyblue;
-              -moz-box-shadow: 1px 3px 28px 0px skyblue;
-              box-shadow: 1px 3px 28px 0px skyblue;
+              -webkit-box-shadow: 1px 3px 28px 0px gray;
+              -moz-box-shadow: 1px 3px 28px 0px gray;
+              box-shadow: 1px 3px 28px 0px gray;
             }
           }
 
           .delete {
+            flex: 1;
             background: transparent;
+            padding: 0px 16px;
             [type='submit'] {
+              width: 100%;
               cursor: pointer;
               background: transparent;
               border: none;
@@ -80,6 +97,7 @@
               justify-content: center;
 
               &:hover {
+                font-size: 48px;
                 color: orange;
                 background: red;
                 border-radius: 10px;

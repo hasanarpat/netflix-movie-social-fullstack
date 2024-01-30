@@ -58,6 +58,9 @@ const WatchList = async () => {
   return (
     <div className="watchList">
       <div className="wrapper">
+        <h2 className="desc">
+          Your watchList, find your favorites and watch laters here!
+        </h2>
         <ul className="list">
           {favorites.map((item) => (
             <li
