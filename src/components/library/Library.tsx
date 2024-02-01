@@ -27,7 +27,6 @@ const Library = async ({ route }: { route: String }) => {
               />
               <div className="filter" />
             </div>
-            <h2 className="singleTitle">{item.title}</h2>
             <div className="desc">
               <h2 className="title">{item.title}</h2>
               <p className="info">
