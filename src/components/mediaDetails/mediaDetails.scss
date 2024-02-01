@@ -86,43 +86,40 @@
 
       .buttons {
         align-self: center;
-
-        .form {
-          display: flex;
-          align-items: center;
-          gap: 50px;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        font-size: 18px;
+        font-weight: 500;
+        button {
+          padding: 10px 20px;
+          cursor: pointer;
+          border: 1px solid var(--main-color);
+          border-radius: 5px;
+          transition: all 0.5s ease-in-out;
+          text-align: center;
           font-size: 18px;
           font-weight: 500;
 
-          button {
-            padding: 10px 20px;
-            cursor: pointer;
-            border: 1px solid var(--main-color);
-            border-radius: 5px;
-            transition: all 0.5s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 16px;
-            font-weight: 500;
+          &.watch:hover,
+          &.addWatchList:hover {
+            color: white;
+            background: var(--main-color);
+            border: 1px solid white;
+          }
 
-            &.watch:hover,
-            &.addWatchList:hover {
-              color: white;
-              background: var(--main-color);
-              border: 1px solid white;
-            }
+          &:first-child {
+            background: white;
+            color: black;
+          }
 
-            &:first-child {
-              background: white;
-              color: black;
-            }
+          &:last-child {
+            background: red;
+            color: white;
+          }
 
-            &:last-child {
-              background: red;
-              color: white;
-            }
+          &:first {
+            color: lime;
           }
         }
       }
@@ -157,6 +154,22 @@
 
         span:first-child::after {
           content: ':';
+        }
+
+        &:first-child span:first-child {
+          color: gold;
+        }
+        &:nth-child(2) span:first-child {
+          color: rgb(230, 230, 52);
+        }
+        &:nth-child(3) span:first-child {
+          color: rgb(11, 144, 197);
+        }
+        &:nth-child(4) span:first-child {
+          color: red;
+        }
+        &:nth-child(5) span:first-child {
+          color: lime;
         }
       }
     }

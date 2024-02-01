@@ -46,21 +46,22 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
           </div>
           <p className="desc">{data.plot}</p>
           <div className="buttons">
+            {' '}
+            <button className="watch">
+              <Link
+                className="watch"
+                href={`/${route}/${data._id}/play`}
+              >
+                <IoPlay style={{ marginRight: 10, fontSize: 16 }} />
+                <span>Watch Now</span>
+              </Link>
+            </button>
             <form
               action=""
               className="form"
             >
-              <button className="watch">
-                <Link
-                  className="watch"
-                  href={`/${route}/${data._id}/play`}
-                >
-                  <IoPlay style={{ marginRight: 10 }} />
-                  <span>Watch Now</span>
-                </Link>
-              </button>
               <button className="addWatchList">
-                <IoAddOutline />
+                <IoAddOutline style={{ marginRight: 10, fontSize: 16 }} />
                 <span>Add to WatchList</span>
               </button>
             </form>
@@ -81,7 +82,7 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
             <span>IMDB Votes</span>
             <span>{data.imdbVotes}</span>
           </div>
-          {data.ratings &&
+          {data.ratings.length > 0 &&
             data.ratings.map((item: any) => (
               <div
                 className="rating"
