@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import './listItem.scss';
 import V from '../../../public/v.png';
@@ -6,10 +7,37 @@ import { IoMdAddCircleOutline } from 'react-icons/io';
 import { AiOutlineLike } from 'react-icons/ai';
 import { BiDislike } from 'react-icons/bi';
 import Link from 'next/link';
+import { CSSProperties, useRef, useState } from 'react';
 
 const ListItem = ({ movie }: { movie: any }) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // console.log(
+  //   (ref.current?.getClientRects()['0'].x.toFixed() as number) / 325,
+  //   ref.current?.getClientRects()['0'].y
+  // );
+
+  const xCoordinate = ref.current?.getClientRects()['0'].x as number;
+  const fixedXCoordinate = xCoordinate / 325;
+  console.log(fixedXCoordinate * 325);
+
+  const hoverStyles: CSSProperties = {
+    position: 'absolute',
+    bottom: -70,
+    left: `${fixedXCoordinate * 325 - 70}px`,
+    zIndex: 9,
+    transition: 'all .2s ease-in-out',
+  };
+
   return (
-    <div className="listItem">
+    <div
+      className="listItem"
+      ref={ref}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={isHovered ? hoverStyles : {}}
+    >
       <div className="imgContainer">
         <Image
           alt=""

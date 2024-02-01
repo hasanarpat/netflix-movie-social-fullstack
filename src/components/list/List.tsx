@@ -71,7 +71,6 @@ const List = () => {
       }
       const result = await response.json();
       setData(result);
-      console.log(result);
     };
 
     fetchData().catch((e) => {

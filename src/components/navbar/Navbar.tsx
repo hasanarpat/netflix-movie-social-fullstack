@@ -22,7 +22,6 @@ const Navbar = () => {
   useEffect(() => {
     window.onscroll = () => {
       setIsScrolled(window.scrollY <= 70 ? false : true);
-      console.log(isScrolled);
       return () => window.onscroll === null;
     };
   }, [isScrolled]);
