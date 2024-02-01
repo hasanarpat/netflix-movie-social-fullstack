@@ -3,7 +3,7 @@ import './featured.scss';
 import { IoInformationCircle, IoPlay } from 'react-icons/io5';
 import matrix from '../../../public/info-title.png';
 import { FC } from 'react';
-import { getAllData } from '@/utils/db/getData';
+import { getData } from '@/utils/db/getData';
 import Link from 'next/link';
 
 interface props {
@@ -11,8 +11,8 @@ interface props {
 }
 
 const Featured: FC<props> = async ({ type }) => {
-  const featured = await getAllData('featured');
-
+  const featured = await getData('featured');
+  console.log(featured);
   return (
     <div className="featured">
       {type && (
@@ -46,15 +46,19 @@ const Featured: FC<props> = async ({ type }) => {
         fill
       />
       <div className="info">
-        <div className="imgContainer">
-          <Image
-            alt="Netflix Logo"
-            src={matrix}
-            className="poster"
-            fill
-          />
-        </div>
-        <span className="desc">{featured.plot.slice(0, 255) + '...'}</span>
+        {featured.popupTitle ? (
+          <div className="imgContainer">
+            <Image
+              alt="Netflix Logo"
+              src={featured.popupTitle}
+              className="img"
+              fill
+            />
+          </div>
+        ) : (
+          <h2>{featured.title}</h2>
+        )}
+        <span className="desc">{featured.plot.slice(0, 320) + '...'}</span>
         <div className="buttons">
           <button className="play">
             <Link href={`/movies/${featured._id}/play`}>

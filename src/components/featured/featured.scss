@@ -36,7 +36,8 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 35%;
+    justify-content: space-between;
+    width: 100%;
     color: white;
 
     .imgContainer {
@@ -48,9 +49,17 @@
         object-fit: cover;
       }
     }
-
+    h2 {
+      font-size: 48px;
+      color: rgb(212, 212, 212);
+      font-weight: 700;
+      width: 100%;
+    }
     .desc {
       margin: 20px 0px;
+      font-size: 18px;
+      letter-spacing: 0.1px;
+      width: 35%;
     }
 
     .buttons {

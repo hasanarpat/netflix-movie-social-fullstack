@@ -11,10 +11,14 @@ export const getAllData = async (route: String) => {
   return await response.json();
 };
 
-export const getData = async (route: String, id: String) => {
-  const response = await fetch(`http://localhost:3000/api/${route}/${id}`, {
-    cache: 'no-cache',
-  });
+export const getData = async (route: String, id?: String) => {
+  const response = id
+    ? await fetch(`http://localhost:3000/api/${route}/${id}`, {
+        cache: 'no-cache',
+      })
+    : await fetch(`http://localhost:3000/api/${route}`, {
+        cache: 'no-cache',
+      });
   // console.log(await response.json());
   if (!response.ok) return console.log('something went wrong');
 
