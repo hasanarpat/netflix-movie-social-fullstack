@@ -7,10 +7,10 @@ export default function Home() {
   return (
     <main className="main">
       <Featured type="movie" />
-      <List />
-      <List />
-      <List />
-      <List />
+      <List title="Continue to watch" />
+      <List title="Popular in Turkey" />
+      <List title="Recommended For You" />
+      <List title="From Your Watchlist" />
     </main>
   );
 }

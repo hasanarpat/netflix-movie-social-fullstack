@@ -35,7 +35,7 @@ interface Rating {
   value: string;
 }
 
-const List = () => {
+const List = ({ title }: { title: string }) => {
   const listRef = useRef<HTMLDivElement | null>(null);
   const [slideNumber, setSlideNumber] = useState(0);
   const [disableDirection, setDisableDirection] = useState(false);
@@ -81,7 +81,7 @@ const List = () => {
 
   return (
     <div className="list">
-      <span className="listTitle">Continue to watch</span>
+      <span className="listTitle">{title}</span>
       <div className="wrapper">
         <IoIosArrowBack
           className="arrow"
