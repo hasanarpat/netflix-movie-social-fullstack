@@ -1,0 +1,21 @@
+.category {
+  position: absolute;
+  top: 80px;
+  left: 50px;
+  z-index: 998;
+  font-size: 30px;
+  font-weight: 500;
+  color: rgb(211, 206, 206);
+  display: flex;
+  align-items: center;
+
+  select {
+    cursor: pointer;
+    background: var(--main-color);
+    border: 1px solid white;
+    color: white;
+    margin-left: 20px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+}

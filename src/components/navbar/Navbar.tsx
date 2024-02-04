@@ -7,6 +7,7 @@ import { IoNotifications } from 'react-icons/io5';
 import { MdArrowDropDown } from 'react-icons/md';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Search from '../search/Search';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -73,7 +74,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="right">
-          <BiSearch className="icon" />
+          <Search />
           <span>KID</span>
           <IoNotifications className="icon" />
           <Image

@@ -20,7 +20,6 @@ const ListItem = ({ movie }: { movie: any }) => {
 
   const xCoordinate = ref.current?.getClientRects()['0'].x as number;
   const fixedXCoordinate = xCoordinate / 325;
-  console.log(fixedXCoordinate * 325);
 
   const hoverStyles: CSSProperties = {
     position: 'absolute',

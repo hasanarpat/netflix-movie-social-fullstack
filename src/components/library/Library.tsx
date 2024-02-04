@@ -7,7 +7,6 @@ import { BiDislike } from 'react-icons/bi';
 import { getAllData } from '@/utils/db/getData';
 
 const Library = async ({ route }: { route: String }) => {
-  console.log(route);
   const items = await getAllData(route);
   return (
     <div className="library">
