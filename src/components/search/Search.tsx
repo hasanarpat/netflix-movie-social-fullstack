@@ -5,32 +5,35 @@ import './search.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 
-function debounce<T extends (...args: any[]) => void>(
-  func: T,
-  delay: number
-): (...args: Parameters<T>) => void {
-  let timeoutId: ReturnType<typeof setTimeout> | null;
+// function debounce<T extends (...args: any[]) => void>(
+//   func: T,
+//   delay: number
+// ): (...args: Parameters<T>) => void {
+//   let timeoutId: ReturnType<typeof setTimeout> | null;
 
-  return function (...args: Parameters<T>) {
-    // Eğer bir önceki timeout varsa iptal et
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
+//   return function (...args: Parameters<T>) {
 
-    // Yeni bir timeout oluştur
-    timeoutId = setTimeout(() => {
-      func(...args);
-    }, delay);
-  };
-}
+//     if (timeoutId) {
+//       clearTimeout(timeoutId);
+//     }
 
-const handleInputChangeDebounced = debounce((value: string) => {
-  return value;
-}, 500);
+//     timeoutId = setTimeout(() => {
+//       func(...args);
+//     }, delay);
+//   };
+// }
+
+// const handleInputChangeDebounced = debounce((value: string) => {
+//   return value;
+// }, 500);
 
 const getResults = async (value: string) => {
-  const res = await fetch('http:localhost:3000/api/search', {
-    body: JSON.stringify(value),
+  const res = await fetch('http://localhost:3000/api/search', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ value }),
   });
 
   if (res.ok) {
@@ -47,9 +50,13 @@ const Search = () => {
   const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     setValue(inputValue);
-    const debouncedValue = handleInputChangeDebounced(value);
+    // const debouncedValue = handleInputChangeDebounced(value);
 
-    setResults(await getResults(value));
+    if (inputValue !== '') {
+      const results = await getResults(inputValue);
+
+      setResults(results);
+    }
   };
   return (
     <div className="search">
@@ -69,102 +76,45 @@ const Search = () => {
         />
       </div>
       <div style={{ position: 'relative' }}>
-        <div className={showInput ? 'results show-results' : 'results'}>
-          <div className="wrapper">
-            <div className="item">
-              <Link
-                href="/"
-                className="info"
-              >
-                <Image
-                  width={50}
-                  height={50}
-                  className="img"
-                  alt="img"
-                  src="https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg"
-                />
-                <h5>Batman Begins</h5>
-              </Link>
-              <div className="img-bg-container">
-                <Image
-                  fill
-                  className="img-bg"
-                  alt="img"
-                  src="https://m.media-amazon.com/images/M/MV5BMjQ4NDg5MTQwNl5BMl5BanBnXkFtZTgwNTQwMTk2MTI@._V1_.jpg"
-                />
-              </div>
-            </div>{' '}
-            <div className="item">
-              <Link
-                href="/"
-                className="info"
-              >
-                <Image
-                  width={50}
-                  height={50}
-                  className="img"
-                  alt="img"
-                  src="https://m.media-amazon.com/images/M/MV5BMjQ4NDg5MTQwNl5BMl5BanBnXkFtZTgwNTQwMTk2MTI@._V1_.jpg"
-                />
-                <h5>Batman Begins</h5>
-              </Link>
-              <div className="img-bg-container">
-                <Image
-                  fill
-                  className="img-bg"
-                  alt="img"
-                  src="https://m.media-amazon.com/images/M/MV5BMjQ4NDg5MTQwNl5BMl5BanBnXkFtZTgwNTQwMTk2MTI@._V1_.jpg"
-                />
-              </div>
-            </div>{' '}
-            <div className="item">
-              <Link
-                href="/"
-                className="info"
-              >
-                <Image
-                  width={50}
-                  height={50}
-                  className="img"
-                  alt="img"
-                  src="https://m.media-amazon.com/images/M/MV5BMjQ4NDg5MTQwNl5BMl5BanBnXkFtZTgwNTQwMTk2MTI@._V1_.jpg"
-                />
-                <h5>Batman Begins</h5>
-              </Link>
-              <div className="img-bg-container">
-                <Image
-                  fill
-                  className="img-bg"
-                  alt="img"
-                  src="https://m.media-amazon.com/images/M/MV5BMjQ4NDg5MTQwNl5BMl5BanBnXkFtZTgwNTQwMTk2MTI@._V1_.jpg"
-                />
-              </div>
-            </div>{' '}
-            <div className="item">
-              <Link
-                href="/"
-                className="info"
-              >
-                <Image
-                  width={50}
-                  height={50}
-                  className="img"
-                  alt="img"
-                  src="https://m.media-amazon.com/images/M/MV5BMjQ4NDg5MTQwNl5BMl5BanBnXkFtZTgwNTQwMTk2MTI@._V1_.jpg"
-                />
-                <h5>Batman Begins</h5>
-              </Link>
-              <div className="img-bg-container">
-                <Image
-                  fill
-                  className="img-bg"
-                  alt="img"
-                  src="https://m.media-amazon.com/images/M/MV5BMjQ4NDg5MTQwNl5BMl5BanBnXkFtZTgwNTQwMTk2MTI@._V1_.jpg"
-                />
-              </div>
+        {results.length > 0 && (
+          <div className={showInput ? 'results show-results' : 'results'}>
+            <div className="wrapper">
+              {results.map((result: any) => (
+                <div
+                  className="item"
+                  key={result._id}
+                >
+                  <Link
+                    href={
+                      result.seasons
+                        ? `/series/${result._id}`
+                        : `/movies/${result._id}`
+                    }
+                    className="info"
+                    onClick={() => setShowInput(false)}
+                  >
+                    <Image
+                      width={50}
+                      height={50}
+                      className="img"
+                      alt="img"
+                      src={result.poster.replace(/'/g, '')}
+                    />
+                    <h5>{result.title}</h5>
+                  </Link>
+                  <div className="img-bg-container">
+                    <Image
+                      fill
+                      className="img-bg"
+                      alt="img"
+                      src={result.img}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
