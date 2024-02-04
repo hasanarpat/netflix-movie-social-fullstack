@@ -12,7 +12,7 @@ interface props {
 
 const Featured: FC<props> = async ({ type }) => {
   const featured = await getData('featured');
-  console.log(featured);
+
   return (
     <div className="featured">
       {type && (
