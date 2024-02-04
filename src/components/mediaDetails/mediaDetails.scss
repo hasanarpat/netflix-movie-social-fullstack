@@ -23,7 +23,7 @@
     .background {
       filter: blur(4px) grayscale(40%) opacity(0.5) contrast(0.6)
         brightness(0.5);
-      object-fit: contain;
+      object-fit: cover;
     }
   }
 

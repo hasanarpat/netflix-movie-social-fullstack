@@ -41,7 +41,7 @@ const Featured: FC<props> = async ({ type }) => {
       )}
       <Image
         alt="Netflix Logo"
-        src={featured.poster.replace(/'/g, '')}
+        src={featured.img}
         className="img"
         fill
       />

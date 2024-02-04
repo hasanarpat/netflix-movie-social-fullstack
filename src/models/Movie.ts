@@ -18,6 +18,7 @@ const movieSchema = new Schema(
     country: String,
     awards: String,
     poster: String,
+    img: String,
     ratings: [{ source: String, value: String }],
     metaScore: String,
     imdbRating: String,

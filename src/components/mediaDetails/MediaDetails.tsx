@@ -22,7 +22,7 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
       <div className="imgBackground">
         <Image
           alt={data.title}
-          src={data.poster.replace(/'/g, '')}
+          src={data.img.replace(/'/g, '')}
           fill
           className="background"
         />
