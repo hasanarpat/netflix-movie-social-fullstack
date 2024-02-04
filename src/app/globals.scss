@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+input {
+  font-family: inherit;
+}
+
 .container {
   background: var(--main-color);
 }
