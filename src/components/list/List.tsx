@@ -81,7 +81,9 @@ const List = ({ title }: { title: string }) => {
 
   return (
     <div className="list">
-      <span className="listTitle">{title}</span>
+      <p className="listTitle">
+        <span>{title}</span> <span>See more &gt;</span>
+      </p>
       <div className="wrapper">
         <IoIosArrowBack
           className="arrow"

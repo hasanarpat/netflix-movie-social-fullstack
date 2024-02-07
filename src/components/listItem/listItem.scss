@@ -1,11 +1,14 @@
 .listItem {
   width: 325px;
-  height: 120px;
+  height: 140px;
   background: white;
+  border-radius: 10px;
   margin-right: 5px;
   overflow: hidden;
   background: var(--main-color);
   cursor: grab;
+
+  transition: all 0.5s ease;
 
   &:active {
     cursor: grabbing;
@@ -13,11 +16,12 @@
 
   .imgContainer {
     width: 325px;
-    height: 120px;
+    height: 140px;
     position: relative;
 
     .img {
       object-fit: cover;
+      object-position: 10% 0%;
     }
   }
 
@@ -35,12 +39,12 @@
     -webkit-box-shadow: 1px 3px 28px 0px rgba(255, 255, 255, 0.23);
     -moz-box-shadow: 1px 3px 28px 0px rgba(255, 255, 255, 0.23);
     box-shadow: 1px 3px 28px 0px rgba(255, 255, 255, 0.23);
-    border-radius: 5px;
 
     .imgContainer {
       width: 360px;
       height: 160px;
       display: none;
+      border-radius: 5px;
 
       .img {
         display: none;
