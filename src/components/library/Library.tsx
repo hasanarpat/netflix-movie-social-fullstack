@@ -12,12 +12,14 @@ const Library = async ({ route }: { route: String }) => {
     <div className="library">
       <div className="wrapper">
         {items.map((item: any) => (
-          <Link
-            href={`/${route}/${item._id}`}
+          <div
             className="item"
             key={item._id}
           >
-            <div className="imgContainer">
+            <Link
+              className="imgContainer"
+              href={`/${route}/${item._id}`}
+            >
               <Image
                 alt={item.title}
                 src={item.poster.replace(/'/g, '')}
@@ -25,7 +27,7 @@ const Library = async ({ route }: { route: String }) => {
                 className="img"
               />
               <div className="filter" />
-            </div>
+            </Link>
             <div className="desc">
               <h2 className="title">{item.title}</h2>
               <p className="info">
@@ -45,7 +47,7 @@ const Library = async ({ route }: { route: String }) => {
               </div>
             </div>
             <div className="filter" />
-          </Link>
+          </div>
         ))}
       </div>
     </div>
