@@ -70,7 +70,8 @@ const Search = () => {
           onChange={handleSearch}
           onBlur={() => {
             () => setValue('');
-            setShowInput(false);
+            () => setShowInput(false);
+            () => setResults([]);
           }}
           value={value}
         />

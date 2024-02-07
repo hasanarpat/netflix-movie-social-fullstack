@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
   const { value } = body;
-  console.log(value);
+
   try {
     await connectToDb();
     const movies = await Movie.find();
