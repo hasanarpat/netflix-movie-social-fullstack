@@ -8,8 +8,11 @@ import { MdArrowDropDown } from 'react-icons/md';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Search from '../search/Search';
+import { useSession } from 'next-auth/react';
 
 const Navbar = () => {
+  const { data: session, status } = useSession();
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   // a silly logic to show or not navbar on some pages
@@ -31,80 +34,68 @@ const Navbar = () => {
     <></>
   ) : (
     <nav className={isScrolled ? 'navbar scrolled' : 'navbar'}>
-      <div className="container">
-        <div className="left">
-          <Link href="/">
+      <div className='container'>
+        <div className='left'>
+          <Link href='/'>
             <Image
-              alt="Netflix Logo"
-              src="/logo.svg.png"
+              alt='Netflix Logo'
+              src='/logo.svg.png'
               width={120}
               height={30}
-              className="logo"
+              className='logo'
             />
           </Link>
-          <Link
-            className="link"
-            href="/"
-          >
+          <Link className='link' href='/'>
             Homepage
           </Link>
-          <Link
-            className="link"
-            href="/series"
-          >
+          <Link className='link' href='/series'>
             Series
           </Link>
-          <Link
-            className="link"
-            href="/movies"
-          >
+          <Link className='link' href='/movies'>
             Movies
           </Link>
-          <Link
-            className="link"
-            href="/popular"
-          >
+          <Link className='link' href='/popular'>
             New and Popular
           </Link>
-          <Link
-            className="link"
-            href="/user/watchList"
-          >
+          <Link className='link' href='/user/watchList'>
             My List
           </Link>
         </div>
-        <div className="right">
+        <div className='right'>
           <Search />
           <span>KID</span>
-          <IoNotifications className="icon" />
-          <Image
-            alt="Netflix Logo"
-            src="https://images.pexels.com/photos/19004679/pexels-photo-19004679/free-photo-of-adam-gunes-gozlugu-oturmak-model.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-            width={30}
-            height={30}
-            className="img"
-          />
-          <div className="profile">
-            <MdArrowDropDown className="icon" />
-            <div className="options">
-              <Link
-                className="option"
-                href="/user/settings"
-              >
+          <IoNotifications className='icon' />
+          {session && session.user?.image != null ? (
+            <Image
+              alt='Netflix Logo'
+              src={session.user?.image}
+              width={30}
+              height={30}
+              className='img'
+            />
+          ) : (
+            <Image
+              alt='Netflix Logo'
+              src='https://images.pexels.com/photos/19004679/pexels-photo-19004679/free-photo-of-adam-gunes-gozlugu-oturmak-model.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
+              width={30}
+              height={30}
+              className='img'
+            />
+          )}
+          <div className='profile'>
+            <MdArrowDropDown className='icon' />
+            <div className='options'>
+              <Link className='option' href='/user/settings'>
                 Settings
               </Link>
-              <Link
-                className="option"
-                href="/user/watchList"
-              >
+              <Link className='option' href='/user/watchList'>
                 WatchList
               </Link>
-              <Link
-                className="option"
-                href="/logout"
-              >
-                Logout
-              </Link>
+              {status === 'authenticated' && (
+                <Link className='option' href='/api/auth/signout?callbackUrl=/'>
+                  Logout
+                </Link>
+              )}
             </div>
           </div>
         </div>

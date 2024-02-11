@@ -13,38 +13,33 @@ interface props {
 
 const Featured: FC<props> = async ({ type }) => {
   const featured = await getData('featured');
-
+  console.log(featured);
   return (
-    <div className="featured">
-      {type && <Category type="movie" />}
-      <Image
-        alt="Netflix Logo"
-        src={featured.img}
-        className="img"
-        fill
-      />
-      <div className="info">
+    <div className='featured'>
+      {type && <Category type='movie' />}
+      <Image alt='Netflix Logo' src={featured.img} className='img' fill />
+      <div className='info'>
         {featured.popupTitle ? (
-          <div className="imgContainer">
+          <div className='imgContainer'>
             <Image
-              alt="Netflix Logo"
+              alt='Netflix Logo'
               src={featured.popupTitle}
-              className="img"
+              className='img'
               fill
             />
           </div>
         ) : (
           <h2>{featured.title}</h2>
         )}
-        <span className="desc">{featured.plot.slice(0, 320) + '...'}</span>
-        <div className="buttons">
-          <button className="play">
+        <span className='desc'>{featured.plot.slice(0, 320) + '...'}</span>
+        <div className='buttons'>
+          <button className='play'>
             <Link href={`/movies/${featured._id}/play`}>
               <IoPlay />
               <span>Play</span>
             </Link>
           </button>
-          <button className="more">
+          <button className='more'>
             <IoInformationCircle />
             <span>Info</span>
           </button>

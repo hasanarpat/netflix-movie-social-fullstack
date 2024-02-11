@@ -18,49 +18,43 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
   // };
 
   return (
-    <section className="mediaDetails">
-      <div className="imgBackground">
+    <section className='mediaDetails'>
+      <div className='imgBackground'>
         <Image
           alt={data.title}
           src={data.img.replace(/'/g, '')}
           fill
-          className="background"
+          className='background'
         />
       </div>
-      <div className="top">
-        <div className="imgContainer">
+      <div className='top'>
+        <div className='imgContainer'>
           <Image
             alt={data.title}
             src={data.poster.replace(/'/g, '')}
             fill
-            className="img globalBoxShadow"
+            className='img globalBoxShadow'
           />
         </div>
-        <div className="hero">
-          <h1 className="title">{data.title}</h1>
-          <div className="date">
-            <span className="year">{data.year}</span>
-            <span className="rated">{data.rated}</span>
-            <span className="runtime">{data.runtime}</span>
-            <span className="released">{data.released}</span>
+        <div className='hero'>
+          <h1 className='title'>{data.title}</h1>
+          <div className='date'>
+            <span className='year'>{data.year}</span>
+            <span className='rated'>{data.rated}</span>
+            <span className='runtime'>{data.runtime}</span>
+            <span className='released'>{data.released}</span>
           </div>
-          <p className="desc">{data.plot}</p>
-          <div className="buttons">
+          <p className='desc'>{data.plot}</p>
+          <div className='buttons'>
             {' '}
-            <button className="watch">
-              <Link
-                className="watch"
-                href={`/${route}/${data._id}/play`}
-              >
+            <button className='watch'>
+              <Link className='watch' href={`/${route}/${data._id}/play`}>
                 <IoPlay style={{ marginRight: 10, fontSize: 16 }} />
                 <span>Watch Now</span>
               </Link>
             </button>
-            <form
-              action=""
-              className="form"
-            >
-              <button className="addWatchList">
+            <form action='' className='form'>
+              <button className='addWatchList'>
                 <IoAddOutline style={{ marginRight: 10, fontSize: 16 }} />
                 <span>Add to WatchList</span>
               </button>
@@ -68,55 +62,56 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
           </div>
         </div>
       </div>
-      <div className="info">
-        <p className="country">Country: {data.country}</p>
-        <p className="languages">Languages: {data.language}</p>
-        <p className="awards">Awards: {data.awards}</p>
-        <p className="genre">Genre: {data.genre}</p>
-        <div className="ratings">
-          <div className="rating">
+      <div className='info'>
+        <p className='country'>Country: {data.country}</p>
+        <p className='languages'>Languages: {data.language}</p>
+        <p className='awards'>Awards: {data.awards}</p>
+        <p className='genre'>Genre: {data.genre}</p>
+        <div className='ratings'>
+          <div className='rating'>
             <span>IMDB Rating</span>
             <span>{data.imdbRating}</span>
           </div>
-          <div className="rating">
+          <div className='rating'>
             <span>IMDB Votes</span>
             <span>{data.imdbVotes}</span>
           </div>
           {data.ratings.length > 0 &&
             data.ratings.map((item: any) => (
-              <div
-                className="rating"
-                key={item._id}
-              >
+              <div className='rating' key={item._id}>
                 <span>{item.source}</span>
                 <span>{item.value}</span>
               </div>
             ))}
         </div>
       </div>
-      <div className="details">
-        <table className="table">
-          <tr className="head">
-            <th className="row">
-              <td className="col"></td>
-              <td className="col"></td>
-            </th>
-          </tr>
-          <tr className="row">
-            <td className="col">Director</td>
-            <td className="col">{data.director}</td>
-          </tr>
-          <tr className="row">
-            <td className="col">Writer</td>
-            <td className="col">{data.writer}</td>
-          </tr>
-          <tr className="row">
-            <td className="col">Actors</td>
-            <td className="col">{data.actors}</td>
-          </tr>
+      <div className='details'>
+        <table className='table'>
+          <thead>
+            <tr className='head'>
+              <th className='row'>
+                <td className='col'></td>
+                <td className='col'></td>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className='row'>
+              <td className='col'>Director</td>
+              <td className='col'>{data.director}</td>
+            </tr>
+            <tr className='row'>
+              <td className='col'>Writer</td>
+              <td className='col'>{data.writer}</td>
+            </tr>
+            <tr className='row'>
+              <td className='col'>Actors</td>
+              <td className='col'>{data.actors}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
-      <div className="comments">{/* Comments Section */}</div>
+      <div className='comments'>{/* Comments Section */}</div>
     </section>
   );
 };

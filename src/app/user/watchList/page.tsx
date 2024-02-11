@@ -3,6 +3,7 @@ import './page.scss';
 import { AiOutlineDelete } from 'react-icons/ai';
 import Link from 'next/link';
 import { BiPlayCircle } from 'react-icons/bi';
+import { getServerSession } from 'next-auth';
 
 const userId = '65aecf19f468c6f384162233';
 
@@ -37,6 +38,8 @@ const getFavorites = async (favorites: [string]) => {
 };
 
 const WatchList = async () => {
+  const session = await getServerSession();
+
   const data = await getData();
   const favorites = await getFavorites(data[0].favorites);
   // console.log(favorites);
@@ -56,44 +59,39 @@ const WatchList = async () => {
   };
 
   return (
-    <div className="watchList">
-      <div className="wrapper">
-        <h2 className="desc">
+    <div className='watchList'>
+      <div className='wrapper'>
+        <h2 className='desc'>
+          {session && (
+            <span style={{ marginRight: 12, color: 'red', fontWeight: 700 }}>
+              {session.user?.name?.toUpperCase()}
+            </span>
+          )}
           Your watchList, find your favorites and watch laters here!
         </h2>
-        <ul className="list">
+        <ul className='list'>
           {favorites.map((item) => (
-            <li
-              className="item"
-              key={item._id}
-            >
-              <div className="poster">
+            <li className='item' key={item._id}>
+              <div className='poster'>
                 <Image
                   alt={item.title}
                   src={item.poster.replace(/'/g, '')}
                   fill
-                  className="img"
+                  className='img'
                 />
               </div>
-              <h2 className="title">{item.title}</h2>
+              <h2 className='title'>{item.title}</h2>
               <span>{item.year}</span>
-              <div className="buttons">
+              <div className='buttons'>
                 <Link
                   href={`/movies/${item._id}/play`}
-                  className="play"
-                  aria-details="play"
+                  className='play'
+                  aria-details='play'
                 >
                   <BiPlayCircle />
                 </Link>
-                <form
-                  className="delete"
-                  action={handleDelete}
-                >
-                  <button
-                    type="submit"
-                    name="id"
-                    value={item._id}
-                  >
+                <form className='delete' action={handleDelete}>
+                  <button type='submit' name='id' value={item._id}>
                     <AiOutlineDelete />
                   </button>
                 </form>

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.scss';
 import Navbar from '@/components/navbar/Navbar';
+import { AuthProvider } from '@/components/auth/AuthProvider';
 
-const roboto = Roboto({
+const inter = Inter({
   subsets: ['latin'],
   weight: ['100', '300', '500', '700', '900'],
 });
@@ -19,12 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>
-        <div className="container">
-          <Navbar />
-          {children}
-        </div>
+    <html lang='en'>
+      <body className={inter.className}>
+        <AuthProvider>
+          <div className='container'>
+            <Navbar />
+            {children}
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );
