@@ -5,10 +5,23 @@ import Link from 'next/link';
 import { BiPlayCircle } from 'react-icons/bi';
 import { getServerSession } from 'next-auth';
 
-const userId = '65aecf19f468c6f384162233';
+let userId = '';
 
-const getData = async () => {
-  const response = await fetch(
+const getData = async (userEmail: string) => {
+  const response = await fetch(`http://localhost:3000/api/user`, {
+    //   next: {
+    //     revalidate: 10,
+    //   },
+    cache: 'no-cache',
+  });
+  if (!response.ok) return 'Fetch failed';
+
+  const users = await response.json();
+  const user = users.filter((user: any) => user.email === userEmail);
+
+  userId = user[0]._id;
+
+  const responseWL = await fetch(
     `http://localhost:3000/api/watchList/${userId}`,
     {
       //   next: {
@@ -17,45 +30,53 @@ const getData = async () => {
       cache: 'no-cache',
     }
   );
-  if (!response.ok) return 'Fetch failed';
+  if (!responseWL.ok) return 'Fetch failed';
 
-  const data = await response.json();
-  return data;
-};
-
-const getFavorites = async (favorites: [string]) => {
-  const favoriteData = [];
-
-  for (const item of favorites) {
-    const response = await fetch(`http://localhost:3000/api/movies/${item}`);
-    const { title, poster, year, _id } = await response.json();
-
-    const favorite = { title, poster, year, _id };
-    favoriteData.push(favorite);
-  }
-
-  return favoriteData;
+  const wl = await responseWL.json();
+  return wl;
 };
 
 const WatchList = async () => {
   const session = await getServerSession();
 
-  const data = await getData();
-  const favorites = await getFavorites(data[0].favorites);
-  // console.log(favorites);
+  const getFavorites = async () => {
+    if (session && session.user) {
+      if (typeof session.user.email === 'string') {
+        const wl = await getData(session?.user?.email);
+
+        return getFavoritesDetails(wl[0].favorites);
+      }
+    }
+  };
+
+  const getFavoritesDetails = async (favorites: any) => {
+    let array = [];
+    for (let i = 0; i < favorites.length; i++) {
+      try {
+        const response = await fetch(
+          `http:localhost:3000/api/movies/${favorites[i]}`
+        );
+        const data = await response.json();
+        array.push(data);
+        console.log(`Data for element ${i}:`, data);
+      } catch (error) {
+        console.error(`Error fetching data for element ${i}:`, error);
+      }
+    }
+    return array;
+  };
+
+  const favorites = await getFavorites();
 
   const handleDelete = async (formData: FormData) => {
     'use server';
     const id = formData.get('id');
     // console.log(id);
-    const response = await fetch(
-      `http://localhost:3000/api/watchList/${userId}`,
-      {
-        cache: 'no-cache',
-        body: JSON.stringify({ id }),
-        method: 'DELETE',
-      }
-    );
+    await fetch(`http://localhost:3000/api/watchList/${userId}`, {
+      cache: 'no-cache',
+      body: JSON.stringify({ id }),
+      method: 'DELETE',
+    });
   };
 
   return (
@@ -70,7 +91,7 @@ const WatchList = async () => {
           Your watchList, find your favorites and watch laters here!
         </h2>
         <ul className='list'>
-          {favorites.map((item) => (
+          {favorites.map((item: any) => (
             <li className='item' key={item._id}>
               <div className='poster'>
                 <Image

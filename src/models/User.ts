@@ -4,7 +4,7 @@ const { Schema, model, models } = mongoose;
 
 const userSchema = new Schema(
   {
-    name: String, // String is shorthand for {type: String}
+    name: String,
     username: {
       type: String,
       required: true,

@@ -1,3 +1,4 @@
+import { User } from '@/models/User';
 import type { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import Github from 'next-auth/providers/github';
@@ -8,7 +9,7 @@ export const options: NextAuthOptions = {
     Github({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
-      profile(profile) {
+      async profile(profile) {
         // console.log('Profile Github', profile);
 
         let userRole = 'Github User';
@@ -16,11 +17,47 @@ export const options: NextAuthOptions = {
           userRole = 'admin';
         }
 
+        console.log(userRole, profile.avatar_url, profile.login);
+
+        const userData = {
+          name: profile.name,
+          username: profile.login,
+          email: profile.email,
+          password: profile.email,
+          profilePicture: profile.avatar_url,
+          age: 32,
+          watchList: '',
+        };
+
+        const resUser = await fetch('http://localhost:3000/api/user', {
+          method: 'POST',
+          body: JSON.stringify(userData),
+        });
+
+        if (!resUser.ok) console.log('failed to save user');
+        const resUserData = await resUser.json();
+        // console.log(resUserData);
+
+        const wlData = {
+          userId: resUserData._id,
+          favorites: [],
+        };
+
+        const resWL = await fetch('http://localhost:3000/api/watchList', {
+          method: 'POST',
+          body: JSON.stringify(wlData),
+        });
+
+        if (!resWL.ok) console.log('failed to save wl');
+
+        // console.log(await resWL.json());
+
         return {
           ...profile,
-          role: userRole,
           image: profile.avatar_url,
           name: profile.login,
+          username: profile.login,
+          role: userRole,
         };
       },
     }),
