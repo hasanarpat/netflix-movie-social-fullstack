@@ -3,6 +3,7 @@ import './mediaDetails.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoAddOutline, IoPlay } from 'react-icons/io5';
+import { getServerSession } from 'next-auth';
 
 const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
   const data = await getData(route, id);
@@ -16,6 +17,24 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
   //     ''
   //   )}")`,
   // };
+
+  const session = await getServerSession();
+
+  const addWatchList = async (formData: FormData) => {
+    'use server';
+    const id = data._id;
+    if (session && session.user != undefined) {
+      const res = await fetch(
+        `http://localhost:3000/api/watchList/${session.user.email}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({ id }),
+        }
+      );
+      const data = await res.json();
+      console.log(data);
+    }
+  };
 
   return (
     <section className='mediaDetails'>
@@ -46,15 +65,19 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
           </div>
           <p className='desc'>{data.plot}</p>
           <div className='buttons'>
-            {' '}
             <button className='watch'>
               <Link className='watch' href={`/${route}/${data._id}/play`}>
                 <IoPlay style={{ marginRight: 10, fontSize: 16 }} />
                 <span>Watch Now</span>
               </Link>
             </button>
-            <form action='' className='form'>
-              <button className='addWatchList'>
+            <form action={addWatchList} className='form'>
+              <button
+                className='addWatchList'
+                type='submit'
+                name='id'
+                value={data._id}
+              >
                 <IoAddOutline style={{ marginRight: 10, fontSize: 16 }} />
                 <span>Add to WatchList</span>
               </button>

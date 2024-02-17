@@ -1,3 +1,4 @@
+import { User } from '@/models/User';
 import { WatchList } from '@/models/WatchList';
 import { connectToDb } from '@/utils/db/connect';
 import { NextRequest, NextResponse } from 'next/server';
@@ -21,27 +22,32 @@ export const GET = async (
   }
 };
 
-// Decide when adn how to create user watchlist and add item to it
+export const POST = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  const { id } = params;
+  try {
+    await connectToDb();
 
-// export const POST = async (
-//   req: NextRequest,
-//   { params }: { params: { id: string } }
-// ) => {
-//   const { id } = params;
-//   try {
-//     await connectToDb();
+    const wlId = await req.json();
 
-//     const movie = new WatchList(await req.json());
-//     const response = await movie.save();
+    const user = await User.findOne({ email: id });
 
-//     return NextResponse.json(response, { status: 200 });
-//   } catch (error: any) {
-//     return NextResponse.json(
-//       { title: error._message, message: error.message },
-//       { status: 400 }
-//     );
-//   }
-// };
+    const wl = await WatchList.findOne({ userId: user._id });
+
+    wl.favorites.push(wlId.id);
+
+    wl.save();
+
+    return NextResponse.json(wl, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { title: error._message, message: error.message },
+      { status: 400 }
+    );
+  }
+};
 
 // export const PUT = async (
 //   req: NextRequest,

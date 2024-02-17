@@ -72,9 +72,9 @@ const WatchList = async () => {
     const id = formData.get('id');
     // console.log(id);
     await fetch(`http://localhost:3000/api/watchList/${userId}`, {
-      cache: 'no-cache',
       body: JSON.stringify({ id }),
       method: 'DELETE',
+      cache: 'no-cache',
     });
   };
 
