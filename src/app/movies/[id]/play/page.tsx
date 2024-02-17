@@ -50,29 +50,22 @@ const PlayMovie = () => {
     }
 
     fetchDetails();
-  });
+  }, []);
 
   return (
-    <div className="playMovie">
-      <BackButton desc="Go Back" />
-      <PopupDetail
-        detail={details}
-        visible={showDetails}
-      />
+    <div className='playMovie'>
+      <BackButton desc='Go Back' />
+      <PopupDetail detail={details} visible={showDetails} />
       <video
         autoPlay={true}
         ref={videoRef}
         loop
-        className="video"
+        className='video'
         controls
         onPlay={() => setShowDetails(false)}
         onPause={() => setShowDetails(true)}
       >
-        <source
-          src="/VforV.mp4"
-          type="video/mp4"
-          className="source"
-        />
+        <source src='/VforV.mp4' type='video/mp4' className='source' />
         Your browser do not support video api
       </video>
     </div>

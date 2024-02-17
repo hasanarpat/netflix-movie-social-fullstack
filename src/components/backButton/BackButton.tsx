@@ -7,11 +7,8 @@ const BackButton = ({ desc }: { desc: string }) => {
   const router = useRouter();
 
   return (
-    <button
-      onClick={() => router.back()}
-      className="back"
-    >
-      <IoArrowBackCircleOutline className="icon" />
+    <button onClick={() => router.back()} className='back popup-text'>
+      <IoArrowBackCircleOutline className='icon' />
       {desc}
     </button>
   );

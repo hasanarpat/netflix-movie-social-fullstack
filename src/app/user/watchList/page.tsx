@@ -58,7 +58,6 @@ const WatchList = async () => {
         );
         const data = await response.json();
         array.push(data);
-        console.log(`Data for element ${i}:`, data);
       } catch (error) {
         console.error(`Error fetching data for element ${i}:`, error);
       }
@@ -90,36 +89,45 @@ const WatchList = async () => {
           )}
           Your watchList, find your favorites and watch laters here!
         </h2>
-        <ul className='list'>
-          {favorites.map((item: any) => (
-            <li className='item' key={item._id}>
-              <div className='poster'>
-                <Image
-                  alt={item.title}
-                  src={item.poster.replace(/'/g, '')}
-                  fill
-                  className='img'
-                />
-              </div>
-              <h2 className='title'>{item.title}</h2>
-              <span>{item.year}</span>
-              <div className='buttons'>
-                <Link
-                  href={`/movies/${item._id}/play`}
-                  className='play'
-                  aria-details='play'
-                >
-                  <BiPlayCircle />
-                </Link>
-                <form className='delete' action={handleDelete}>
-                  <button type='submit' name='id' value={item._id}>
-                    <AiOutlineDelete />
-                  </button>
-                </form>
-              </div>
-            </li>
-          ))}
-        </ul>
+        {favorites != undefined && (
+          <ul className='list'>
+            {favorites.map((item: any) => (
+              <li className='item' key={item._id}>
+                <div className='poster'>
+                  <Image
+                    alt={item.title}
+                    src={item.poster.replace(/'/g, '')}
+                    fill
+                    className='img'
+                  />
+                </div>
+                <h2 className='title'>{item.title}</h2>
+                <span>{item.year}</span>
+                <div className='buttons'>
+                  <Link
+                    href={`/movies/${item._id}/play`}
+                    className='play'
+                    aria-details='play'
+                    aria-label='play'
+                  >
+                    <BiPlayCircle />
+                  </Link>
+                  <form className='delete' action={handleDelete}>
+                    <button
+                      type='submit'
+                      name='id'
+                      value={item._id}
+                      aria-details='delete'
+                      aria-label='delete'
+                    >
+                      <AiOutlineDelete />
+                    </button>
+                  </form>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
