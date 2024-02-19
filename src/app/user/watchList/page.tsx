@@ -74,7 +74,7 @@ const WatchList = async () => {
     await fetch(`http://localhost:3000/api/watchList/${userId}`, {
       body: JSON.stringify({ id }),
       method: 'DELETE',
-      cache: 'no-cache',
+      cache: 'no-store',
     });
   };
 

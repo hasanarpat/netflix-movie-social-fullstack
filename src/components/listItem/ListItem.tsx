@@ -8,6 +8,7 @@ import { AiOutlineLike } from 'react-icons/ai';
 import { BiDislike } from 'react-icons/bi';
 import Link from 'next/link';
 import { CSSProperties, useRef, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 const ListItem = ({ movie }: { movie: any }) => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -29,46 +30,66 @@ const ListItem = ({ movie }: { movie: any }) => {
     transition: 'all .2s ease-in-out',
   };
 
+  const { data: session, status } = useSession();
+
+  const addWatchList = async (id: string) => {
+    console.log('started client add wl fetch');
+    if (session && session.user != undefined) {
+      const res = await fetch(
+        `http://localhost:3000/api/watchList/${session.user.email}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({ id }),
+        }
+      );
+      const data = await res.json();
+      console.log(data);
+    }
+  };
+
   return (
     <div
-      className="listItem"
+      className='listItem'
       ref={ref}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={isHovered ? hoverStyles : {}}
     >
-      <div className="imgContainer">
+      <div className='imgContainer'>
         <Image
-          alt=""
+          alt=''
           src={movie.poster.replace(/'/g, '')}
           fill
-          className="img"
+          className='img'
         />
       </div>
       <Link href={`/movies/${movie._id}`}>
         <video
           autoPlay={true}
-          src="/VforV.mp4"
+          src='/VforV.mp4'
           loop
-          className="trailer"
+          className='trailer'
           muted
         />
       </Link>
-      <div className="itemInfo">
-        <div className="icons">
-          <Link href="/movies/id/play">
-            <IoPlayOutline className="icon" />
+      <div className='itemInfo'>
+        <div className='icons'>
+          <Link href='/movies/id/play'>
+            <IoPlayOutline className='icon' />
           </Link>
-          <IoMdAddCircleOutline className="icon" />
-          <AiOutlineLike className="icon" />
-          <BiDislike className="icon" />
+          <IoMdAddCircleOutline
+            className='icon'
+            onClick={() => addWatchList(movie._id)}
+          />
+          <AiOutlineLike className='icon' />
+          <BiDislike className='icon' />
         </div>
-        <div className="name">{movie.title}</div>
-        <div className="desc">{movie.plot.slice(0, 128)}</div>
-        <div className="genre">{movie.genre}</div>
-        <div className="info">
+        <div className='name'>{movie.title}</div>
+        <div className='desc'>{movie.plot.slice(0, 128)}</div>
+        <div className='genre'>{movie.genre}</div>
+        <div className='info'>
           <span>{movie.runtime}</span>
-          <span className="limit">{movie.rated}</span>
+          <span className='limit'>{movie.rated}</span>
           <span>{movie.released}</span>
         </div>
       </div>
