@@ -201,7 +201,11 @@
     }
   }
 
-  .comments {
+  .commentsSection {
     z-index: 1;
+
+    width: 70%;
+    margin: auto;
+    background: #363232;
   }
 }

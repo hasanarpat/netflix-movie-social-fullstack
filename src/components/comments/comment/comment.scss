@@ -1,0 +1,80 @@
+.comment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 20px;
+
+  .singleComment {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    .singleCommentAvatar {
+      border-radius: 50%;
+    }
+
+    .commentDivider {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .singleCommentDetails {
+        span {
+          margin-right: 10px;
+          font-size: 18;
+
+          &:last-child {
+            color: lightgray;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .singleCommentDesc {
+        font-size: 16px;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .buttons {
+    margin-left: 60px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+
+    .commentIcons {
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .commentIcon {
+        padding: 5px;
+        border-radius: 50%;
+        color: white;
+        font-size: 28px;
+        &:hover {
+          background: lightslategray;
+        }
+      }
+
+      span {
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 500px;
+        &:hover {
+          background: lightslategray;
+        }
+      }
+    }
+    .singleCommentSeeOthers {
+      color: lightcoral;
+      cursor: pointer;
+    }
+  }
+}

@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { IoAddOutline, IoPlay } from 'react-icons/io5';
 import { getServerSession } from 'next-auth';
+import Comments from '../comments/Comments';
+import { Suspense } from 'react';
 
 const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
   const data = await getData(route, id);
@@ -134,7 +136,11 @@ const MediaDetails = async ({ route, id }: { route: String; id: String }) => {
           </tbody>
         </table>
       </div>
-      <div className='comments'>{/* Comments Section */}</div>
+      <div className='commentsSection'>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Comments />
+        </Suspense>
+      </div>
     </section>
   );
 };
