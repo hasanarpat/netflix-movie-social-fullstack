@@ -20,7 +20,7 @@
 ###Searchbar
 ![Searchbar](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-search.png)
 
-###AWatchlist
+###Watchlist
 ![Watchlist](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-wl.PNG)
 
 
