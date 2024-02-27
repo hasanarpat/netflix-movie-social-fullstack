@@ -6,7 +6,7 @@
 
 
 ###Homepage Design
-![Homepage Design](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix.hp.png))](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix.hp.PNG)
+![Homepage Design](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix.hp.PNG)
 
 ###Authentication on Navbar
 ![Authentication on Navbar](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-auth.png)
