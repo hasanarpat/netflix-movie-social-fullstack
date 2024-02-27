@@ -1,10 +1,26 @@
 #A movie site inspired by netflix design but have interactions like youtube(comment, like ...)
 ## Comment section is in to-do
 
+###GIF
+![Authentication on Navbar](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix.gif)
+
+
+###Homepage Design
+![Homepage Design](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix.hp.png)
+
+###Authentication on Navbar
 ![Authentication on Navbar](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-auth.png)
 
-<br/>
-<img src="https://github.com/hasanarpat/Restaurant-Food-Delivery-NextJS/blob/master/public/readme/2.gif"/>
+###Movies By Genre
+![Movies By Genre](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-genre.png)
 
-<br/>
-<img src="https://github.com/hasanarpat/Restaurant-Food-Delivery-NextJS/blob/master/public/readme/3.gif"/>
+###Movie Gallery
+![Movie Gallery](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-movies.png)
+
+###Searchbar
+![Searchbar](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-search.png)
+
+###AWatchlist
+![Watchlist](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-wl.PNG)
+
+
