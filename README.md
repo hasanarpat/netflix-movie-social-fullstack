@@ -12,7 +12,7 @@
 ![Authentication on Navbar](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-auth.png)
 
 ###Movies By Genre
-![Movies By Genre](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-genre.png)
+![Movies By Genre](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-genre.PNG)
 
 ###Movie Gallery
 ![Movie Gallery](https://github.com/hasanarpat/netflix-movie-social-fullstack/blob/master/public/netflix-movies.png)
